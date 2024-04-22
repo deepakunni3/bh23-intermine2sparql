@@ -60,8 +60,10 @@ authors_short: François Belleau & Deepak Unni et al.
 We started by first translating the data model from two well-known InterMine instances, [HumanMine](www.humanmine.org) and [FlyMine](www.flymine.org). The data model for both of these can be fetched as JSON via their respective APIs as follows,
 
 ```shell
-curl https://www.humanmine.org/humanmine/service/model?format=json > humanmine_model.json
-curl https://www.flymine.org/flymine/service/model?format=json > flymine_model.json
+curl https://www.humanmine.org/humanmine/service/model?format=json \
+    > humanmine_model.json
+curl https://www.flymine.org/flymine/service/model?format=json \
+    > flymine_model.json
 ```
 
 To express the data model of HumanMine and FlyMine, we looked into [LinkML](www.linkml.org) [2], a flexible modeling language that allows one to define data models in YAML while providing several constructs that can be used for expressing the complexity of a data model. We translated the HumanMine and FlyMine data model into LinkML YAML, where classes are defined as [LinkML classes](https://linkml.io/linkml-model/latest/docs/ClassDefinition/) and class properties are defined as [LinkML slots](https://linkml.io/linkml-model/latest/docs/SlotDefinition/).
@@ -79,6 +81,7 @@ At this point we had one set of documents describing the members of the differen
 **Figure 2:** An example of the JSON-LD that was generated.
 
 For loading data into Elasticsearch, we prepared Jupyter notebooks that do the following:
+
 - [schema2es.ipynb](https://github.com/intermineorg/intermine2sparql/blob/main/schema2es.ipynb): First we converted the schema and loaded it into Elasticsearch
 - [intermine2es.ipynb](https://github.com/intermineorg/intermine2sparql/blob/main/intermine2es.ipynb): After which, we converted the JSON data and loaded them into Elasticsearch
 - [intermine_relation2es.ipynb](https://github.com/intermineorg/intermine2sparql/blob/main/intermine_relation2es.ipynb): Finally, relationships between objects were loaded into Elasticsearch
